@@ -180,3 +180,22 @@ export const sample_foods = [
     tags: ["Snack", "FastFood", "Vegetarian"],
   },
 ];
+
+
+export const sample_tags = [
+  { name: "All", count: 18 },
+  { name: "FastFood", count: 4 },
+  { name: "Pizza", count: 0 },
+  { name: "Lunch", count: 9 },
+  { name: "SlowFood", count: 0 },
+  { name: "Vegetarian", count: 7 },
+  { name: "Snack", count: 6 },
+  { name: "Dessert", count: 1 },
+  { name: "Indian", count: 9 },
+  { name: "Spicy", count: 3 },
+  { name: "StreetFood", count: 2 },
+  { name: "Fusion", count: 1 },
+  { name: "Appetizer", count: 1 },
+  { name: "Breakfast", count: 4 },
+];
+
