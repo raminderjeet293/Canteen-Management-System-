@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { sample_foods } from '../data';
 
 const CartContext = createContext(null);
 const CART_KEY = 'cart';
@@ -9,7 +10,9 @@ const EMPTY_CART = {
 };
 
 export default function CartProvider({ children }) {
-  const initCart = getCartFromLocalStorage();
+ const initCart = getCartFromLocalStorage();
+
+
   const [cartItems, setCartItems] = useState(initCart.items);
   const [totalPrice, setTotalPrice] = useState(initCart.totalPrice);
   const [totalCount, setTotalCount] = useState(initCart.totalCount);
@@ -31,8 +34,10 @@ export default function CartProvider({ children }) {
   }, [cartItems]);
 
   function getCartFromLocalStorage() {
+   
     const storedCart = localStorage.getItem(CART_KEY);
     return storedCart ? JSON.parse(storedCart) : EMPTY_CART;
+   
   }
 
   const sum = items => {
@@ -67,13 +72,13 @@ export default function CartProvider({ children }) {
     }
   };
 
-  const clearCart = () => {
-    localStorage.removeItem(CART_KEY);
-    const { items, totalPrice, totalCount } = EMPTY_CART;
-    setCartItems(items);
-    setTotalPrice(totalPrice);
-    setTotalCount(totalCount);
-  };
+  // const clearCart = () => {
+  //   localStorage.removeItem(CART_KEY);
+  //   const { items, totalPrice, totalCount } = EMPTY_CART;
+  //   setCartItems(items);
+  //   setTotalPrice(totalPrice);
+  //   setTotalCount(totalCount);
+  // };
 
   return (
     <CartContext.Provider
@@ -82,7 +87,7 @@ export default function CartProvider({ children }) {
         removeFromCart,
         changeQuantity,
         addToCart,
-        clearCart,
+      //  clearCart,
       }}
     >
       {children}
@@ -91,3 +96,11 @@ export default function CartProvider({ children }) {
 }
 
 export const useCart = () => useContext(CartContext);
+
+
+
+
+
+
+
+
