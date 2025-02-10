@@ -185,7 +185,6 @@ export const sample_foods = [
 export const sample_tags = [
   { name: "All", count: 18 },
   { name: "FastFood", count: 4 },
-  { name: "Pizza", count: 0 },
   { name: "Lunch", count: 9 },
   { name: "SlowFood", count: 0 },
   { name: "Vegetarian", count: 7 },
