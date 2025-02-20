@@ -1,17 +1,18 @@
 import React, { useEffect, useReducer } from "react";
-import {
-  getAll,
-  search,
-  getAllTags,
-  getAllByTag,
-} from "../../services/foodService";
-import ThumbNails from "../../components/Thumbnails/ThumbNails";
 import { useParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
 import Tags from "../../components/Tags/Tags";
+import Thumbnails from "../../components/Thumbnails/ThumbNails";
+import {
+  getAll,
+  getAllByTag,
+  getAllTags,
+  search,
+} from "../../services/foodService";
 import NotFound from "../../components/NotFound/NotFound";
 
 const initialState = { foods: [], tags: [] };
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FOODS_LOADED":
@@ -39,7 +40,6 @@ export default function HomePage() {
       ? search(searchTerm)
       : getAll();
 
-    // const loadedFoods = searchTerm ? search(searchTerm) : getAll();
     loadFoods.then((foods) =>
       dispatch({ type: "FOODS_LOADED", payload: foods })
     );
@@ -49,10 +49,8 @@ export default function HomePage() {
     <>
       <Search />
       <Tags tags={tags} />
-      {foods.length === 0 && (
-        <NotFound message="Not Found" linkText={"Reset Search"} linkRoute="/" />
-      )}
-      <ThumbNails foods={foods} />
+      {foods.length === 0 && <NotFound linkText="Reset Search" />}
+      <Thumbnails foods={foods} />
     </>
   );
 }

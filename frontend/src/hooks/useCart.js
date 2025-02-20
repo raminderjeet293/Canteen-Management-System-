@@ -1,8 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { sample_foods } from '../data';
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const CartContext = createContext(null);
-const CART_KEY = 'cart';
+const CART_KEY = "cart";
 const EMPTY_CART = {
   items: [],
   totalPrice: 0,
@@ -10,16 +9,14 @@ const EMPTY_CART = {
 };
 
 export default function CartProvider({ children }) {
- const initCart = getCartFromLocalStorage();
-
-
+  const initCart = getCartFromLocalStorage();
   const [cartItems, setCartItems] = useState(initCart.items);
   const [totalPrice, setTotalPrice] = useState(initCart.totalPrice);
   const [totalCount, setTotalCount] = useState(initCart.totalCount);
 
   useEffect(() => {
-    const totalPrice = sum(cartItems.map(item => item.price));
-    const totalCount = sum(cartItems.map(item => item.quantity));
+    const totalPrice = sum(cartItems.map((item) => item.price));
+    const totalCount = sum(cartItems.map((item) => item.quantity));
     setTotalPrice(totalPrice);
     setTotalCount(totalCount);
 
@@ -34,18 +31,18 @@ export default function CartProvider({ children }) {
   }, [cartItems]);
 
   function getCartFromLocalStorage() {
-   
     const storedCart = localStorage.getItem(CART_KEY);
     return storedCart ? JSON.parse(storedCart) : EMPTY_CART;
-   
   }
 
-  const sum = items => {
+  const sum = (items) => {
     return items.reduce((prevValue, curValue) => prevValue + curValue, 0);
   };
 
-  const removeFromCart = foodId => {
-    const filteredCartItems = cartItems.filter(item => item.food.id !== foodId);
+  const removeFromCart = (foodId) => {
+    const filteredCartItems = cartItems.filter(
+      (item) => item.food.id !== foodId
+    );
     setCartItems(filteredCartItems);
   };
 
@@ -59,26 +56,20 @@ export default function CartProvider({ children }) {
     };
 
     setCartItems(
-      cartItems.map(item => (item.food.id === food.id ? changedCartItem : item))
+      cartItems.map((item) =>
+        item.food.id === food.id ? changedCartItem : item
+      )
     );
   };
 
-  const addToCart = food => {
-    const cartItem = cartItems.find(item => item.food.id === food.id);
+  const addToCart = (food) => {
+    const cartItem = cartItems.find((item) => item.food.id === food.id);
     if (cartItem) {
       changeQuantity(cartItem, cartItem.quantity + 1);
     } else {
       setCartItems([...cartItems, { food, quantity: 1, price: food.price }]);
     }
   };
-
-  // const clearCart = () => {
-  //   localStorage.removeItem(CART_KEY);
-  //   const { items, totalPrice, totalCount } = EMPTY_CART;
-  //   setCartItems(items);
-  //   setTotalPrice(totalPrice);
-  //   setTotalCount(totalCount);
-  // };
 
   return (
     <CartContext.Provider
@@ -87,7 +78,6 @@ export default function CartProvider({ children }) {
         removeFromCart,
         changeQuantity,
         addToCart,
-      //  clearCart,
       }}
     >
       {children}
@@ -96,11 +86,3 @@ export default function CartProvider({ children }) {
 }
 
 export const useCart = () => useContext(CartContext);
-
-
-
-
-
-
-
-
