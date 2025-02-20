@@ -198,3 +198,30 @@ export const sample_tags = [
   { name: "Breakfast", count: 4 },
 ];
 
+
+export const sample_users=[
+  {
+    id:1,
+   name:'Akhila',
+   email:'akhila@gmail.com',
+   password:'12345',
+   address:'Rohini sec-5',
+   isAdmin:false
+  },
+  {
+    id:2,
+   name:'RaminderJeet',
+   email:'raminderjeet@gmail.com',
+   password:'678910',
+   address:'Rohini sec-3',
+   isAdmin:true
+  },
+  {
+    id:3,
+   name:'Gunjan',
+   email:'gunjan@gmail.com',
+   password:'189245',
+   address:'Rithala sec-5',
+   isAdmin:false
+  }
+]

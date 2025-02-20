@@ -6,19 +6,18 @@ import StarRating from "../../components/StarRating/StarRating";
 import Tags from "../../components/Tags/Tags";
 import Price from "../../components/Price/Price";
 import { useCart } from "../../hooks/useCart";
+import NotFound from "../../components/NotFound/NotFound";
 
 export default function FoodPage() {
   const [food, setFood] = useState({});
   const { id } = useParams();
-  const {addToCart}= useCart();
-  const navigate=useNavigate();
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
-  const handleAddToCart=()=>
-  {
+  const handleAddToCart = () => {
     addToCart(food);
-    navigate('/cart');
-
-  }
+    navigate("/cart");
+  };
 
   useEffect(() => {
     getById(id).then(setFood);
@@ -26,7 +25,13 @@ export default function FoodPage() {
 
   return (
     <>
-      {food && (
+      {!food ? (
+        <NotFound
+          message="Food Not found"
+          linkText="Back to Home Page"
+          linkRoute="/"
+        />
+      ) : (
         <div className={classes.container}>
           <img
             className={classes.image}
@@ -41,7 +46,7 @@ export default function FoodPage() {
                 className={`${classes.favorite}
                      ${food.favorite ? "" : classes.not} `}
               >
-                 ❤
+                ❤
               </span>
             </div>
 
@@ -50,7 +55,7 @@ export default function FoodPage() {
             </div>
 
             <br></br>
-            
+
             <div className={classes.tags}>
               {food.tags && (
                 <Tags
