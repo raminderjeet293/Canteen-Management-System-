@@ -11,7 +11,7 @@ export default function CartPage() {
 
   return (
     <>
-      <Title title="Something" margin="1.5rem 0 0 2.5rem" />
+      <Title title="" margin="1.5rem 0 0 2.5rem" />
       {console.log(cart.items)}
       {cart.items.length === 0 ? (
         <NotFound
