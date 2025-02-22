@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import classes from './loginPage.module.css'
 import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
+import Button from '../../components/Button/Button';
 
 export default function LoginPage() {
 
@@ -32,8 +33,30 @@ const submit=async({ email,password})=>{
                     pattern:{value:/^[\w-.]+@([\w-]+\.)+[\w-]{2,63}$/i,
                     message:'Email Is Not Valid !'
                     }
-                })}/>
+                })}
+                
+                error={errors.email}
+                
+                />
+        
+
+        <Input type='password' label='password' {...register('password',{
+                    required:true,
+                   
+                    
+                })}
+                
+                error={errors.password}
+                
+                />
+
+         <Button type='submit' text='Login'/>       
+
+
+
             </form>
+
+
             
          </div>
     </div>;
