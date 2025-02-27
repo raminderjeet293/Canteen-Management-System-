@@ -1,8 +1,8 @@
 import React,{useEffect} from 'react'
 import { useForm } from 'react-hook-form';
-import { Form, useNavigate, useSearchParams } from 'react-router-dom';
+import {Form, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import classes from './loginPage.module.css'
+import classes from './loginPage.module.css';
 import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
@@ -24,9 +24,10 @@ const submit=async({ email,password})=>{
     await login(email,password);
 }
 
-  return  <div className={classes.container}>
+
+  return  (<div className={classes.container}>
          <div className={classes.details}>
-            <Title title='login'/>
+            <Title title='Login'/>
             <form onSubmit={handleSubmit(submit)} noValidate>
                 <Input type='email' label='Email' {...register('email',{
                     required:true,
@@ -34,13 +35,13 @@ const submit=async({ email,password})=>{
                     message:'Email Is Not Valid !'
                     }
                 })}
-                
+            
                 error={errors.email}
                 
                 />
         
 
-        <Input type='password' label='password' {...register('password',{
+        <Input type='password' label='Password' {...register('password',{
                     required:true,
                    
                     
@@ -59,6 +60,6 @@ const submit=async({ email,password})=>{
 
             
          </div>
-    </div>;
-  
+    </div>
+  );
 }

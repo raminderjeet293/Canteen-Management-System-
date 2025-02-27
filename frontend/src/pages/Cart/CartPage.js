@@ -11,7 +11,7 @@ export default function CartPage() {
 
   return (
     <>
-      <Title title="Something" margin="1.5rem 0 0 2.5rem" />
+      <Title title="" margin="1.5rem 0 0 2.5rem" />
       {console.log(cart.items)}
       {cart.items.length === 0 ? (
         <NotFound
@@ -26,7 +26,7 @@ export default function CartPage() {
               <li key={item.food.id}>
                 <div>
                   <img
-                    src={`/foods/${item.food.imageUrl}`}
+                    src={`${item.food.imageUrl}`}
                     alt={item.food.name}
                   ></img>
                 </div>
