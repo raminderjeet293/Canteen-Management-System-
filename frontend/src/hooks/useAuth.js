@@ -18,8 +18,10 @@ export const AuthProvider=({children})=>
         }
         catch(err)
         {
-              
+            const errorMessage = err.response?.data || 'Login failed. Please try again.';  
+            toast.error(errorMessage);
             toast.error(err.response.data);
+
         }
         
     };

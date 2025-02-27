@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import { useForm } from 'react-hook-form';
-import { Form, useNavigate, useSearchParams } from 'react-router-dom';
+import {Form, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import classes from './loginPage.module.css';
 import Title from '../../components/Title/Title';
@@ -23,6 +23,7 @@ export default function LoginPage() {
 const submit=async({ email,password})=>{
     await login(email,password);
 }
+
 
   return  (<div className={classes.container}>
          <div className={classes.details}>
