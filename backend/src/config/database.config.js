@@ -1,11 +1,11 @@
-import { connect, set } from 'mongoose';
-import { UserModel } from '../models/user.model.js';
-import { FoodModel } from '../models/food.model.js';
-import { sample_users } from '../data.js';
-import { sample_foods } from '../data.js';
-import bcrypt from 'bcryptjs';
+import { connect, set } from "mongoose";
+import { UserModel } from "../models/user.model.js";
+import { FoodModel } from "../models/food.model.js";
+import { sample_users } from "../data.js";
+import { sample_foods } from "../data.js";
+import bcrypt from "bcryptjs";
 const PASSWORD_HASH_SALT_ROUNDS = 10;
-set('strictQuery', true);
+set("strictQuery", true);
 
 export const dbconnect = async () => {
   try {
@@ -13,23 +13,22 @@ export const dbconnect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('connect successfully---');
+    console.log("connect successfully---");
     await seedUsers();
     await seedFoods();
-    console.log('connect successfully 2---');
+    console.log("connect successfully 2---");
   } catch (error) {
     console.log(error);
   }
 };
 
 async function seedUsers() {
-
   await UserModel.deleteMany(); // Clear collection first
-  console.log('Old Users removed');
+  console.log("Old Users removed");
 
   const usersCount = await UserModel.countDocuments();
   if (usersCount > 0) {
-    console.log('Users seed is already done!');
+    console.log("Users seed is already done!");
     return;
   }
 
@@ -38,17 +37,16 @@ async function seedUsers() {
     await UserModel.create(user);
   }
 
-  console.log('Users seed is done!');
+  console.log("Users seed is done!");
 }
 
 async function seedFoods() {
-  
   await FoodModel.deleteMany(); // Clear collection first
-  console.log('Old foods removed');
- 
+  console.log("Old foods removed");
+
   const foods = await FoodModel.countDocuments();
   if (foods > 0) {
-    console.log('Foods seed is already done!');
+    console.log("Foods seed is already done!");
     return;
   }
 
@@ -57,5 +55,5 @@ async function seedFoods() {
     await FoodModel.create(food);
   }
 
-  console.log('Foods seed Is Done!');
+  console.log("Foods seed Is Done!");
 }
