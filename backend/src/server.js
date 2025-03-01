@@ -4,9 +4,9 @@ import express from "express";
 import cors from "cors";
 import foodRouter from "./routers/food.router.js";
 import userRouter from './routers/user.router.js';
-import { dbconnect } from "../src/config/database.config.js";
+import {dbconnect} from "../src/config/database.config.js";
 
-console.log('MONGO_URI:', process.env.MONGO_URI); // Log the MongoDB URI
+console.log('MONGO_URI:',process.env.MONGO_URI); // Log the MongoDB URI
 console.log('Attempting to connect to MongoDB...');
 dbconnect();
 

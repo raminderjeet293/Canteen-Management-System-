@@ -7,19 +7,25 @@ import bcrypt from 'bcryptjs';
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);
 
-export const dbconnect = async () => {
+ export const dbconnect = async () => {
   try {
+   
     await connect(process.env.MONGO_URI, {
+      
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    });
+      
+    }  );
     console.log('connect successfully---');
     await seedUsers();
     await seedFoods();
     console.log('connect successfully 2---');
-  } catch (error) {
+  }
+   catch (error) 
+  {
     console.log(error);
   }
+
 };
 
 async function seedUsers() {
@@ -59,3 +65,4 @@ async function seedFoods() {
 
   console.log('Foods seed Is Done!');
 }
+
