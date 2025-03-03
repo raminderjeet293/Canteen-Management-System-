@@ -4,14 +4,12 @@ import { useAuth } from '../../hooks/useAuth'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { createOrder } from '../../services/orderService'
+import { createOrder } from '../../services/orderService.js'
 import classes from './checkoutPage.module.css'
 import Title from '../../components/Title/Title'
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import OrderItemsList from '../../components/OrderItemsList/OrderItemsList';
-
-
 
 
 
@@ -35,18 +33,14 @@ export default function CheckoutPage() {
          alert("Your cart is empty.");
          return;
        }
-     
-
-       await createOrder({...order, name :data.name
-       // ,address: data.address -->  this address is not used
+       await createOrder({...order,name:data.name
+        //,address: data.address--> this address is not used
     });
     
-    navigate('/payment')
+    navigate('/payment');
        
    }
-
-
- 
+   
 
   return (
    <>
@@ -87,3 +81,5 @@ export default function CheckoutPage() {
    </>
   )
 }
+
+

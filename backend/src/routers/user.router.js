@@ -6,7 +6,13 @@ import handler from "express-async-handler";
 import { UserModel } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 const PASSWORD_HASH_SALT_ROUNDS = 10;
-
+router.get(
+  "/",
+  handler(async (req, res) => {
+    const users = await UserModel.find({});
+    res.json(users);
+  })
+);
 router.post(
   "/login",
   handler(async (req, res) => {
@@ -30,6 +36,7 @@ router.post(
       res.status(BAD_REQUEST).send("User already exists,please login!");
       return;
     }
+   
     const hashedPassword = await bcrypt.hash(
       password,
       PASSWORD_HASH_SALT_ROUNDS
