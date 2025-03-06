@@ -21,8 +21,18 @@ export const createOrder = async (order) => {
      }
 };
 
-
-
+export const getNewOrderForCurrentUser = async () => {
+  const user = localStorage.getItem('user');
+  const token = user && JSON.parse(user).token;
+  const { data } = await axios.get('/api/orders/newOrderForCurrentUser', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  
+  return data;
+};
 
 
 
