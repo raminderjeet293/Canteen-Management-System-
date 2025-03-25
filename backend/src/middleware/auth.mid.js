@@ -25,6 +25,7 @@ import jwt from "jsonwebtoken";
 import { UNAUTHORIZED } from "../constants/httpStatus.js";
 
 export default (req, res, next) => {
+  console.log('Auth middleware executed');
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     console.log("No Authorization header or incorrect format");
@@ -36,6 +37,7 @@ export default (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
+   
     console.log("Decoded User:", decoded); // Debugging log
     next();
   } catch (error) {

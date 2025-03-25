@@ -1,11 +1,14 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
 const router = Router();
+import auth from '../middleware/auth.mid.js'
 import { BAD_REQUEST } from "../constants/httpStatus.js";
 import handler from "express-async-handler";
 import { UserModel } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
 const PASSWORD_HASH_SALT_ROUNDS = 10;
+
 router.get(
   "/",
   handler(async (req, res) => {
@@ -54,11 +57,94 @@ router.post(
   })
 );
 
+////-----------------------------
+
+router.post(
+  '/updateProfile',
+  auth,
+  handler(async (req, res) => {
+    console.log('Update Profile route hit');
+    const {name} = req.body;
+    if (!name) {
+      return res.status(400).send({ message: 'Name is required' });
+    }
+   
+
+    const userId = new mongoose.Types.ObjectId(req.user.id);
+
+    // Log the user ID format for debugging
+    console.log('Formatted User ID for query:', userId);
+
+
+
+   // Try to find the user in the database
+   const user1 = await UserModel.findById(userId);
+   console.log('User found in database:', user1);
+  
+
+    
+    const user = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      {name},
+      { new: true }
+    );
+    console.log('User found after update:', user);
+    console.log({name})
+
+
+
+  
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+ 
+   
+    res.send(generateTokenResponse(user));
+  })
+);
+
+//---------------------------
+
+
+
+router.post('/changePassword',
+  auth,
+  handler(async(req,res)=>{
+      const {currentPassword,newPassword}=req.body;
+      const user= await UserModel.findById(req.user.id);
+
+      if(!user)
+      {
+        res.status(BAD_REQUEST).send('Change Password Failed !');
+        return ;
+      }
+     
+      const equal = await bcrypt.compare(currentPassword,user.password);
+      if(!equal){
+           res.status(BAD_REQUEST).send('Current Password Is Not Correct !');
+           return;
+      }
+
+        user.password=await bcrypt.hash(newPassword,PASSWORD_HASH_SALT_ROUNDS);
+        await user.save();
+        res.send();
+
+  })
+);
+
+
+
+
+
+
+
+
 const generateTokenResponse = (user) => {
   const token = jwt.sign(
     {
       id: user.id,
       email: user.email,
+    //  name:user.name,
       isAdmin: user.isAdmin,
     },
     process.env.JWT_SECRET,
@@ -76,3 +162,4 @@ const generateTokenResponse = (user) => {
 };
 
 export default router;
+

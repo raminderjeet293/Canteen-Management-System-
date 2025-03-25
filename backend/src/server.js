@@ -14,7 +14,6 @@ console.log('Attempting to connect to MongoDB...');
 dbconnect();
 
 const app = express();
-
 app.use(express.json());
 app.use(
   cors({
@@ -22,13 +21,16 @@ app.use(
     origin: ["http://localhost:3000"],
   })
 );
-
+ 
 
 app.use("/api/foods", foodRouter);
-
 app.use("/api/users", userRouter);
-
 app.use("/api/orders",orderRouter);
+
+
+
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
