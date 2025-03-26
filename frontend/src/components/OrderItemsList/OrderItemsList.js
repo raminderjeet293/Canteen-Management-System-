@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Price from '../Price/Price';
-import classes from './orderItemsList.module.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import Price from "../Price/Price";
+import classes from "./orderItemsList.module.css";
 
 export default function OrderItemsList({ order }) {
   return (
@@ -12,7 +12,7 @@ export default function OrderItemsList({ order }) {
             <h3>Order Items:</h3>
           </td>
         </tr>
-        {order.items.map(item => (
+        {order.items.map((item) => (
           <tr key={item.food.id}>
             <td>
               <Link to={`/food/${item.food.id}`}>
