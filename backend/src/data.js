@@ -206,7 +206,7 @@ export const sample_users=[
    email:'akhila@gmail.com',
    password:'12345',
    address:'Rohini sec-5',
-   isAdmin:false
+   isAdmin:true
   },
   {
     id:2,
@@ -222,6 +222,22 @@ export const sample_users=[
    email:'gunjan@gmail.com',
    password:'189245',
    address:'Rithala sec-5',
+   isAdmin:true
+  },
+  {
+    id:4,
+   name:'Manisha',
+   email:'manisha@gmail.com',
+   password:'1234abcd',
+   address:'Rithala sec-7',
+   isAdmin:false
+  },
+  {
+    id:5,
+   name:'Ayushi',
+   email:'ayushi@gmail.com',
+   password:'1290',
+   address:'Rithala sec-8',
    isAdmin:false
   }
 ]

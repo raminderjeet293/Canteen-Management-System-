@@ -8,6 +8,9 @@ import RegisterPage from "./pages/Register/RegisterPage";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
 import CheckoutPage from "./pages/Checkout/CheckoutPage";
 import PaymentPage from "./pages/Payment/PaymentPage";
+import ProfilePage from "./pages/Profile/ProfilePage";
+import OrderPage from "./pages/Orders/OrderPage";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 export default function AppRoutes() {
   return (
@@ -19,16 +22,49 @@ export default function AppRoutes() {
       <Route path="/cart" element={<CartPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/checkout"
+      <Route
+        path="/checkout"
         element={
           <AuthRoute>
             <CheckoutPage />
-          </AuthRoute>} />
-      <Route path="/payment"
+          </AuthRoute>
+        }
+      />
+      <Route
+        path="/payment"
         element={
           <AuthRoute>
             <PaymentPage />
-          </AuthRoute>} />
+          </AuthRoute>
+        }
+      />
+
+      <Route
+        path="/profile"
+        element={
+          <AuthRoute>
+            <ProfilePage />
+          </AuthRoute>
+        }
+      />
+
+      <Route
+        path="/orders/:filter?"
+        element={
+          <AuthRoute>
+            <OrderPage />
+          </AuthRoute>
+        }
+      />
+
+     <Route
+        path="/dashboard"
+        element={
+          <AuthRoute>
+            <Dashboard />
+          </AuthRoute>
+        }
+      />
     </Routes>
   );
 }
