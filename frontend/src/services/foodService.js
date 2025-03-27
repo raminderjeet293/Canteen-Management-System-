@@ -25,3 +25,33 @@ export const getById = async (foodId) => {
   const { data } = await axios.get("/api/foods/" + foodId);
   return data;
 };
+
+
+// export async function deleteById(foodId)
+// {
+//     await axios.delete('/api/foods/' + foodId);
+// }
+
+
+
+
+export async function deleteById(foodId) {
+  const token = localStorage.getItem('token');  // Retrieve token from localStorage
+  console.log("Token retrieved for deleteById:", token);  // Check the token here
+
+  if (!token) {
+    throw new Error('No authentication token available');
+  }
+
+  try {
+    await axios.delete('/api/foods/' + foodId, {
+      headers: {
+        Authorization: `Bearer ${token}`,  // Add the token to the request headers
+      },
+    });
+  } catch (error) {
+    console.error('Error deleting food:', error);
+    throw error;  // Re-throw error to handle it higher up
+  }
+  
+}
