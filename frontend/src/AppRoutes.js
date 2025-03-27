@@ -60,7 +60,7 @@ export default function AppRoutes() {
         }
       />
 
-     <Route
+      <Route
         path="/dashboard"
         element={
           <AuthRoute>
@@ -69,7 +69,7 @@ export default function AppRoutes() {
         }
       />
 
-        <Route
+      <Route
         path="/admin/foods/:searchTerm?"
         element={
           <AdminRoute>
@@ -78,9 +78,23 @@ export default function AppRoutes() {
         }
       />
 
+      <Route
+        path="/admin/addFood"
+        element={
+          <AdminRoute>
+            <FoodEditPage />
+          </AdminRoute>
+        }
+      />
 
-
-
+      <Route
+        path="/admin/editFood/:foodId"
+        element={
+          <AdminRoute>
+            <FoodEditPage />
+          </AdminRoute>
+        }
+      />
     </Routes>
   );
 }

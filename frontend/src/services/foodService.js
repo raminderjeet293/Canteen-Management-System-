@@ -26,32 +26,74 @@ export const getById = async (foodId) => {
   return data;
 };
 
-
 // export async function deleteById(foodId)
 // {
 //     await axios.delete('/api/foods/' + foodId);
 // }
 
-
-
-
 export async function deleteById(foodId) {
-  const token = localStorage.getItem('token');  // Retrieve token from localStorage
-  console.log("Token retrieved for deleteById:", token);  // Check the token here
+  const token = localStorage.getItem("token"); // Retrieve token from localStorage
+  console.log("Token retrieved for deleteById:", token); // Check the token here
 
   if (!token) {
-    throw new Error('No authentication token available');
+    throw new Error("No authentication token available");
   }
 
   try {
-    await axios.delete('/api/foods/' + foodId, {
+    await axios.delete("/api/foods/" + foodId, {
       headers: {
-        Authorization: `Bearer ${token}`,  // Add the token to the request headers
+        Authorization: `Bearer ${token}`, // Add the token to the request headers
       },
     });
   } catch (error) {
-    console.error('Error deleting food:', error);
-    throw error;  // Re-throw error to handle it higher up
+    console.error("Error deleting food:", error);
+    throw error; // Re-throw error to handle it higher up
   }
-  
+}
+
+// export async function update(food) {
+//   await axios.put("/api/foods", food);
+// }
+
+export async function update(food) {
+  const token = localStorage.getItem("token"); // Retrieve token from localStorage
+  console.log("Token retrieved for update:", token); // Debugging: Check token value
+
+  if (!token) {
+    throw new Error("No authentication token available");
+  }
+
+  try {
+    await axios.put("/api/foods", food, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Add authentication token
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.error("Error updating food:", error);
+    throw error; // Re-throw error for higher-level error handling
+  }
+}
+
+export async function add(food) {
+  const token = localStorage.getItem("token"); // Retrieve token from localStorage
+  console.log("Token retrieved for add:", token); // Debugging: Check token value
+
+  if (!token) {
+    throw new Error("No authentication token available");
+  }
+
+  try {
+    const { data } = await axios.post("/api/foods", food, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Add authentication token
+        "Content-Type": "application/json",
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("Error adding food:", error);
+    throw error; // Re-throw error for higher-level error handling
+  }
 }

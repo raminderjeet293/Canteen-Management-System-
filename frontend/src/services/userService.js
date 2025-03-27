@@ -1,30 +1,30 @@
 import axios from "axios";
 import { data } from "react-router-dom";
 
-
-
 export const getUser = () =>
   localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
 
- 
-
-
+// export const login = async (email, password) => {
+//   const { data } = await axios.post("api/users/login", { email, password });
+//   localStorage.setItem("user", JSON.stringify(data));
+//   return data;
+// };
 
 export const login = async (email, password) => {
   const { data } = await axios.post("api/users/login", { email, password });
+
+  // Store full user data
   localStorage.setItem("user", JSON.stringify(data));
+
+  // Store token separately for easier access
+  if (data.token) {
+    localStorage.setItem("token", data.token);
+  }
+
   return data;
 };
-
-
-
-
-
-
-
-
 
 export const register = async (registerData) => {
   const { data } = await axios.post("api/users/register", registerData);
@@ -36,11 +36,6 @@ export const logout = () => {
   localStorage.removeItem("user");
 };
 
-
-
-
-
-
 /////-----------------------------------------------------
 
 // export const updateProfile=async (user)=>{
@@ -49,12 +44,11 @@ export const logout = () => {
 
 //  const updatedUser = { name: 'Updated Name' };
 
-
 // try {
 //   const { data } = await axios.post('/api/users/updateProfile', updatedUser, {
 //     headers: {
 //       'Content-Type': 'application/json',
-//       Authorization: `Bearer ${token}`,  
+//       Authorization: `Bearer ${token}`,
 //     },
 //   });
 //   localStorage.setItem('user',JSON.stringify(data));
@@ -65,26 +59,21 @@ export const logout = () => {
 // }
 // }
 
-
-
 ////-------------------------------------------------------
 
-
-
-
 export const updateProfile = async (updatedUserData) => {
-  const user = localStorage.getItem('user');
-  const token = user ? JSON.parse(user).token : null;  
+  const user = localStorage.getItem("user");
+  const token = user ? JSON.parse(user).token : null;
 
   if (!token) {
     console.error("Token not found!");
-    return;  
+    return;
   }
 
-  console.log('Token:', token);
+  console.log("Token:", token);
 
   const currentUser = user ? JSON.parse(user) : null;
-  
+
   if (!currentUser) {
     console.error("No user data found in localStorage");
     return;
@@ -93,50 +82,49 @@ export const updateProfile = async (updatedUserData) => {
   const updatedUser = { ...currentUser, ...updatedUserData };
 
   try {
-    const { data } = await axios.post('/api/users/updateProfile', updatedUser, {
+    const { data } = await axios.post("/api/users/updateProfile", updatedUser, {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`, 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
 
     // Save updated user data back to localStorage
-    localStorage.setItem('user', JSON.stringify(data));
-    console.log('Profile updated:', data);
+    localStorage.setItem("user", JSON.stringify(data));
+    console.log("Profile updated:", data);
 
     return data;
   } catch (error) {
-    console.error('Error updating profile:', error.response?.data || error.message);
+    console.error(
+      "Error updating profile:",
+      error.response?.data || error.message
+    );
   }
 };
 
-
-
-
-
-
-
-export const changePassword=async passwords=>
-{
- // const token = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).token;
-  const user = localStorage.getItem('user');
+export const changePassword = async (passwords) => {
+  // const token = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).token;
+  const user = localStorage.getItem("user");
   const token = user ? JSON.parse(user).token : null;
 
   if (!token) {
     console.error("Token not found!");
-    return; 
+    return;
   }
 
-    try {
-      const { data } = await axios.post("/api/users/changePassword",passwords, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,  
-        },
-      });
-      console.log('Password updated:', data);
-    } catch (error) {
-      console.error('Error updating password:', error.response?.data || error.message);
-      return data;
-    }
-}
+  try {
+    const { data } = await axios.post("/api/users/changePassword", passwords, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("Password updated:", data);
+  } catch (error) {
+    console.error(
+      "Error updating password:",
+      error.response?.data || error.message
+    );
+    return data;
+  }
+};
