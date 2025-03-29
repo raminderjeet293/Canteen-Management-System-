@@ -128,3 +128,59 @@ export const changePassword = async (passwords) => {
     return data;
   }
 };
+
+
+export const getAll = async (searchTerm) => {
+  const user = localStorage.getItem("user");
+  const token = user ? JSON.parse(user).token : null;
+
+  if (!token) {
+    console.error("Token not found!");
+    return [];
+  }
+
+  try {
+    const { data } = await axios.get("/api/users/getAll", {
+      params: { search: searchTerm ?? "" }, // Correct way to pass searchTerm
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log("Fetched users:", data);
+    return data; // Ensure data is returned properly
+  } catch (error) {
+    console.error("Error fetching users:", error.response?.data || error.message);
+    return []; // Return an empty array to avoid errors in .map()
+  }
+};
+
+export const toggleBlock = async (userId) => {
+  const user = localStorage.getItem("user");
+  const token = user ? JSON.parse(user).token : null;
+
+  if (!token) {
+    console.error("Token not found!");
+    return [];
+  }
+
+  try {
+    // const { data } = await axios.get("/api/users/toggleBlock", {
+      const { data } = await axios.post(`/api/users/toggleBlock/${userId}`, {}, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log("Fetched users:", data);
+    return data; // Ensure data is returned properly
+  } catch (error) {
+    console.error("Error fetching users:", error.response?.data || error.message);
+    return []; // Return an empty array to avoid errors in .map()
+  }
+};
+
+
+

@@ -22,6 +22,10 @@ export const userSchema = new Schema({
         type: Boolean,
         default: false,
     },
+    isBlocked: {
+        type: Boolean,
+        default: false,
+    },
 },
 {
     timestamps: true,
