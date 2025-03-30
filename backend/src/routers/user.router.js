@@ -144,11 +144,13 @@ router.get(
     const filter = searchTerm
       ? { name: { $regex: new RegExp(searchTerm, 'i') } }
       : {};
-
-    const users = await UserModel.find(filter, { password: 0 });
+  const users = await UserModel.find(filter, { password: 0 });
     res.send(users);
   })
 );
+
+
+
 
 router.post(
   '/toggleBlock/:userId',
@@ -168,6 +170,48 @@ router.post(
     res.send(user.isBlocked);
   })
 );
+
+
+
+
+router.get(
+  '/getById/:userId',
+  admin,
+  handler(async (req, res) => {
+    const { userId } = req.params;
+
+    const user = await UserModel.findById(userId, {password:0});
+   
+
+    res.send(user);
+  })
+);
+
+
+router.post(
+  '/update',
+  admin,
+  handler(async (req, res) => {
+    const { id,name,email,isAdmin} = req.body;
+
+    await UserModel.findByIdAndUpdate(id,
+      {
+        name,email,
+        isAdmin
+      }
+    );
+   
+
+    res.send();
+  })
+);
+
+
+
+
+
+
+
 
 const generateTokenResponse = (user) => {
   const token = jwt.sign(

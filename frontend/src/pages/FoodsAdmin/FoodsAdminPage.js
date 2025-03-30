@@ -66,6 +66,7 @@ export default function FoodsAdminPage() {
             <Search searchRoute="/admin/foods/"
                defaultRoute="/admin/foods"
                margin="1rem 0"
+               placeholder="Search Foods"
                />
 
             <Link to="/admin/addFood" className={classes.add_food}>

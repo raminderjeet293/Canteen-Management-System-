@@ -7,8 +7,6 @@
 //    return next();
 //  };
 //  export default [authMid, adminMid];
-
-
 import { UNAUTHORIZED } from '../constants/httpStatus.js';
 import authMid from './auth.mid.js';
 
