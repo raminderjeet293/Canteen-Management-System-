@@ -1,6 +1,6 @@
-import { model, Schema } from 'mongoose';
-import { OrderStatus } from '../constants/orderStatus.js';
-import { FoodModel } from './food.model.js';
+import { model, Schema } from "mongoose";
+import { OrderStatus } from "../constants/orderStatus.js";
+import { FoodModel } from "./food.model.js";
 
 export const OrderItemSchema = new Schema(
   {
@@ -13,7 +13,7 @@ export const OrderItemSchema = new Schema(
   }
 );
 
-OrderItemSchema.pre('validate', function (next) {
+OrderItemSchema.pre("validate", function (next) {
   this.price = this.food.price * this.quantity;
   next();
 });
@@ -25,7 +25,7 @@ const orderSchema = new Schema(
     totalPrice: { type: Number, required: true },
     items: { type: [OrderItemSchema], required: true },
     status: { type: String, default: OrderStatus.NEW },
-    user: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
+    user: { type: Schema.Types.ObjectId, required: true, ref: "user" },
   },
   {
     timestamps: true,
@@ -38,7 +38,4 @@ const orderSchema = new Schema(
   }
 );
 
-export const OrderModel = model('order', orderSchema);
-
-
-
+export const OrderModel = model("order", orderSchema);

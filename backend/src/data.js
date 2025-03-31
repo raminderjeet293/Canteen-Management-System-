@@ -181,7 +181,6 @@ export const sample_foods = [
   },
 ];
 
-
 export const sample_tags = [
   { name: "All", count: 18 },
   { name: "FastFood", count: 4 },
@@ -198,46 +197,144 @@ export const sample_tags = [
   { name: "Breakfast", count: 4 },
 ];
 
+export const sample_users = [
+  {
+    id: 1,
+    name: "Akhila",
+    email: "akhila@gmail.com",
+    password: "12345",
+    address: "Rohini sec-5",
+    isAdmin: true,
+  },
+  {
+    id: 2,
+    name: "RaminderJeet",
+    email: "raminderjeet@gmail.com",
+    password: "678910",
+    address: "Rohini sec-3",
+    isAdmin: true,
+  },
+  {
+    id: 3,
+    name: "Gunjan",
+    email: "gunjan@gmail.com",
+    password: "189245",
+    address: "Rithala sec-5",
+    isAdmin: true,
+  },
+  {
+    id: 4,
+    name: "Manisha",
+    email: "manisha@gmail.com",
+    password: "1234abcd",
+    address: "Rithala sec-7",
+    isAdmin: false,
+  },
+  {
+    id: 5,
+    name: "Ayushi",
+    email: "ayushi@gmail.com",
+    password: "1290",
+    address: "Rithala sec-8",
+    isAdmin: false,
+  },
+];
 
-export const sample_users=[
+export const sample_stocks = [
   {
-    id:1,
-   name:'Akhila',
-   email:'akhila@gmail.com',
-   password:'12345',
-   address:'Rohini sec-5',
-   isAdmin:true
+    id: "1",
+    name: "Wheat Flour",
+    quantity: 50,
+    pricePerUnit: 40,
+    category: "Grains",
+    restockThreshold: 10,
   },
   {
-    id:2,
-   name:'RaminderJeet',
-   email:'raminderjeet@gmail.com',
-   password:'678910',
-   address:'Rohini sec-3',
-   isAdmin:true
+    id: "2",
+    name: "Rice",
+    quantity: 30,
+    pricePerUnit: 60,
+    category: "Grains",
+    restockThreshold: 5,
   },
   {
-    id:3,
-   name:'Gunjan',
-   email:'gunjan@gmail.com',
-   password:'189245',
-   address:'Rithala sec-5',
-   isAdmin:true
+    id: "3",
+    name: "Sugar",
+    quantity: 20,
+    pricePerUnit: 45,
+    category: "Essentials",
+    restockThreshold: 5,
   },
   {
-    id:4,
-   name:'Manisha',
-   email:'manisha@gmail.com',
-   password:'1234abcd',
-   address:'Rithala sec-7',
-   isAdmin:false
+    id: "4",
+    name: "Cooking Oil",
+    quantity: 15,
+    pricePerUnit: 120,
+    category: "Oils & Fats",
+    restockThreshold: 5,
   },
   {
-    id:5,
-   name:'Ayushi',
-   email:'ayushi@gmail.com',
-   password:'1290',
-   address:'Rithala sec-8',
-   isAdmin:false
-  }
-]
+    id: "5",
+    name: "Salt",
+    quantity: 25,
+    pricePerUnit: 20,
+    category: "Essentials",
+    restockThreshold: 5,
+  },
+  {
+    id: "6",
+    name: "Butter",
+    quantity: 10,
+    pricePerUnit: 150,
+    category: "Dairy",
+    restockThreshold: 3,
+  },
+  {
+    id: "7",
+    name: "Paneer",
+    quantity: 8,
+    pricePerUnit: 200,
+    category: "Dairy",
+    restockThreshold: 2,
+  },
+  {
+    id: "8",
+    name: "Potatoes",
+    quantity: 40,
+    pricePerUnit: 30,
+    category: "Vegetables",
+    restockThreshold: 10,
+  },
+  {
+    id: "9",
+    name: "Tomatoes",
+    quantity: 35,
+    pricePerUnit: 35,
+    category: "Vegetables",
+    restockThreshold: 10,
+  },
+  {
+    id: "10",
+    name: "Green Chilies",
+    quantity: 12,
+    pricePerUnit: 80,
+    category: "Vegetables",
+    restockThreshold: 3,
+  },
+  {
+    id: "11",
+    name: "Spices Mix",
+    quantity: 5,
+    pricePerUnit: 250,
+    category: "Spices & Condiments",
+    restockThreshold: 2,
+  },
+  {
+    id: "12",
+    name: "Tea Leaves",
+    quantity: 7,
+    pricePerUnit: 180,
+    category: "Beverages",
+    restockThreshold: 3,
+  },
+];

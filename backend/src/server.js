@@ -7,6 +7,7 @@ import userRouter from "./routers/user.router.js";
 import { dbconnect } from "../src/config/database.config.js";
 import orderRouter from "./routers/order.router.js";
 import uploadRouter from "./routers/upload.router.js";
+import stockRouter from "./routers/stock.router.js";
 
 console.log("MONGO_URI:", process.env.MONGO_URI); // Log the MongoDB URI
 console.log("Attempting to connect to MongoDB...");
@@ -26,6 +27,7 @@ app.use("/api/foods", foodRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/upload", uploadRouter);
+app.use("/api/stocks", stockRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
