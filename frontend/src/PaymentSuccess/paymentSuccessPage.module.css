@@ -1,0 +1,142 @@
+.successContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+  }
+  
+  .successCard {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+  }
+  
+  .successHeader h2 {
+    color: #fe3838;
+    font-size: 2rem;
+  }
+  
+  .successMessage {
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .checkmark {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .successAnimation {
+    width: 50px;
+    height: 50px;
+    border: 10px solid transparent;
+    border-radius: 50%;
+    border-top: 10px solid #f43939;
+    animation: spin 2s linear infinite, checkmark 1s ease-in-out forwards;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes checkmark {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .loadingSpinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid transparent;
+    border-top: 5px solid #f32f2f;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  .paymentDetails {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .buttonsContainer {
+    margin-top: 30px;
+  }
+  
+  .doneButton {
+    background-color: #f13434;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+  
+  .doneButton:hover {
+    background-color: #ff3a3a;
+  }
+  
+  .animatedTick {
+    width: 80px;
+    height: 80px;
+    display: block;
+    stroke-width: 2;
+    stroke: #4BB543;
+    stroke-miterlimit: 10;
+    margin: 20px auto;
+    animation: scale .3s ease-in-out .9s both;
+  }
+  
+  .tickCircle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4BB543;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+  
+  .tickCheck {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+  }
+  
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes scale {
+    0%, 100% {
+      transform: none;
+    }
+    50% {
+      transform: scale3d(1.1, 1.1, 1);
+    }
+  }
